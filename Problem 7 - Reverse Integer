@@ -1,0 +1,13 @@
+class Solution {
+    public int reverse(int x) {
+        
+        long res=0;
+        while(x!=0){
+            int l=x%10;
+            res=res*10+l;
+            x=x/10;
+        }
+    if(res>2147483647 || res< -2147483648){return 0;}
+    else return (int)res;
+    }
+}
