@@ -1,0 +1,44 @@
+class Solution {
+    public boolean isValid(String s) {
+        
+        if(s.length()==0){return true;}
+        else if(s.length()%2==1) 
+        {return false;}
+        else
+        {
+        char[] ch=s.toCharArray();
+        Character ch1=new Character(ch[0]);    
+        if(ch1.equals('}') || ch1.equals(']') || ch1.equals(')')) 
+        {return false;}
+        else{
+        Stack<Character> st=new Stack<Character>();
+        for(Character c:ch){     
+            if(c.equals('(') || c.equals('[') || c.equals('{')){
+                st.push(c);
+            }
+            else if(c.equals(')')){
+                if(!st.pop().equals('(')){
+                    return false;
+                }
+            }
+            else if(c.equals(']')){
+                if(!st.pop().equals('[')){
+                    return false;
+                }
+            }
+            else if(c.equals('}')){
+                if(!st.pop().equals('{')){
+                    return false;
+                }
+            }
+            else {
+                return false;
+            }
+            
+        }
+        if(st.size()>0){return false;}
+        return true;
+        }
+        }
+    }
+}
