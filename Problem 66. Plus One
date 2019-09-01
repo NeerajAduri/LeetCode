@@ -1,0 +1,38 @@
+
+class Solution {
+    public int[] plusOne(int[] digits) {
+       int l=digits.length;
+       int ch=0;
+        for(int i=0;i<l;i++){
+            if(digits[i]==9){ch++;}
+        }
+        if(ch==l){
+            int[] res=new int[l+1];
+            res[0]=1;
+            return res;
+        }
+        else{
+            int car=0;
+                if(digits[l-1]!=9){
+                    digits[l-1]++;
+                    return digits;
+                }
+                else{
+                    digits[l-1]=0;car=1;
+                     
+                    for(int i=l-2;i>=0;i--){
+                        if(digits[i]==9){
+                            digits[i]=0;
+                        }
+                        else{
+                            digits[i]++;
+                            break;
+                        }
+                    
+                    
+                }
+                return digits;
+            }
+        }
+    }
+}
