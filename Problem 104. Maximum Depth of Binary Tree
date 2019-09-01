@@ -1,0 +1,31 @@
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    
+    int maxdepth=-100000;
+    public int maxDepth(TreeNode root) {
+        int level=0;
+        Solution s= new Solution();        
+        s.dfinder(root,level);       
+        return s.maxdepth;
+        
+    }
+    
+    public void dfinder(TreeNode root, int level){
+       if(maxdepth <level){maxdepth=level;}
+        if(root==null){
+            return ;
+        }
+        dfinder(root.left, level+1);
+        dfinder(root.right, level +1);  
+        return ;
+    }
+    
+}
