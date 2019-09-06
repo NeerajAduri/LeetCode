@@ -26,7 +26,6 @@ class Solution {
             res[count++]=max;
         }
         
-        return res;
-        
+        return res;   
     }
 }
