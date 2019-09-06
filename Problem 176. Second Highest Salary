@@ -3,7 +3,6 @@ select MAX(x.Salary) as SecondHighestSalary from (Select emp.Salary from Employe
 
 select distinct salary from Employee order by 1 desc limit 1 offset 1
 
-
 SELECT DISTINCT
     Salary AS SecondHighestSalary
 FROM
