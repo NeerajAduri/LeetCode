@@ -21,8 +21,7 @@ public class Solution extends VersionControl {
             else{
                   high=piv;
             }
-            piv=(low+high)/2;
-            
+            piv=(low+high)/2;         
         }    
         return 1;
     }
