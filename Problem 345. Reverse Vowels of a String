@@ -1,0 +1,20 @@
+class Solution {
+    public String reverseVowels(String s) {
+        if(s.equals("")){return "";}
+        List<Character> l=new ArrayList<>();
+        char[] c=s.toCharArray();   
+        for(char c1:c){
+            if(c1=='a' || c1=='e' || c1=='i' || c1=='o' || c1=='u' || c1=='A' || c1=='E' || c1=='I' || c1=='O' || c1=='U'){
+                l.add((Character)c1);
+            }
+        }
+        int k=l.size()-1;
+        for(int i=0;i<c.length;i++){
+            if(c[i]=='a' || c[i]=='e' || c[i]=='i' || c[i]=='o' || c[i]=='u' || c[i]=='A' || c[i]=='E' || c[i]=='I' || c[i]=='O' || c[i]=='U'){
+                c[i]=l.get(k--);
+            }
+        }
+        String res=new String(c);
+        return res;
+    }
+}
