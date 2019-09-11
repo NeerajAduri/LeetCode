@@ -1,0 +1,10 @@
+class Solution {
+    public boolean isPerfectSquare(int num) {
+        double d=Math.sqrt(num);
+        int a=(int)d;
+        if(a==d){
+            return true;
+        }
+        return false;
+    }
+}
