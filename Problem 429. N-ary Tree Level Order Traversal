@@ -1,0 +1,55 @@
+/*
+// Definition for a Node.
+class Node {
+    public int val;
+    public List<Node> children;
+
+    public Node() {}
+
+    public Node(int _val,List<Node> _children) {
+        val = _val;
+        children = _children;
+    }
+};
+*/
+class Solution {
+    Map<Integer,List<Integer>> levelRes = new HashMap<Integer,List<Integer>> ();
+    int level = -1;
+    public List<List<Integer>> levelOrder(Node root) {   
+        trav(root);
+        Set<Integer> keySet = levelRes.keySet();
+        List<List<Integer>> res = new ArrayList<List<Integer>>();
+        
+        for(int i=0;i<keySet.size();i++){
+            res.add(levelRes.get(i));    
+        }
+        return res;
+        
+    }
+    
+    
+    public void trav(Node root){
+        
+         level++;
+        if(root==null){level--; return;}
+        
+        if(levelRes.containsKey(level)){
+            List<Integer> list1= levelRes.get(level);
+            list1.add(root.val);
+            levelRes.put(level,list1);
+        }   
+        else{
+            List<Integer> list1= new ArrayList<Integer>();
+            list1.add(root.val);levelRes.put(level,list1);
+        }
+        
+        
+        for(int i=0;i<root.children.size();i++){
+            trav(root.children.get(i));level--;
+        }
+        
+        
+            
+    }
+    
+}
