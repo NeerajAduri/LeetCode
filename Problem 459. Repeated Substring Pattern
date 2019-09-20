@@ -1,0 +1,25 @@
+class Solution {
+    public boolean repeatedSubstringPattern(String s) {
+        
+        List<Integer> factors = new ArrayList<Integer>();
+        
+        int len = s.length();
+        
+        for(int i=1;i< ( len / 2 + 1 );i++){
+                if(len%i==0){
+                    factors.add(i);
+                }
+        }
+        
+        
+        for(int i=0;i<factors.size();i++){
+            String check = s.substring(0,factors.get(i));
+            boolean c = true;
+            for(int j=0;j<=s.length()-check.length();j+=factors.get(i)){
+              if(!s.substring(j,j+factors.get(i)).equals(check)){ c= false;break;} 
+            }
+            if(c==true){return true;}
+        }
+        return false;
+    }
+}
