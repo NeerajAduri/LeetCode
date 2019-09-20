@@ -1,0 +1,26 @@
+class Solution {
+    public int compress(char[] chars) {
+        int count=1;
+        int index=0;
+        char c=chars[0];
+        int i=1;
+        for(;i<chars.length;i++){
+           if(c==chars[i]){count++;}
+           else{     
+               chars[index++]=c;
+               if(count>1){
+               StringBuffer sb=new StringBuffer(String.valueOf(count));               
+               for(int index1=0;index1<sb.length();){chars[index++]=sb.charAt(index1++);}    
+               }   
+               count=1;
+               c=chars[i];
+           }
+       }
+       chars[index++]=chars[i-1];
+       if(count>1){
+               StringBuffer sb=new StringBuffer(String.valueOf(count));               
+               for(int index1=0;index1<sb.length();){chars[index++]=sb.charAt(index1++);}    
+               }
+       return index;
+    }
+}
