@@ -1,0 +1,25 @@
+/**
+ * @param {number} x
+ * @param {number} y
+ * @return {number}
+ */
+var hammingDistance = function(x, y) {
+  var xarr=(x >>> 0).toString(2),yarr=(y >>> 0).toString(2),xlen=xarr.length,ylen=yarr.length,ad=0,count=0;
+    if(xlen>ylen){
+        for(;ad<(xlen-ylen);ad++){
+            yarr="0"+yarr;
+        }
+    }
+    else{
+        for(ad=0;ad<(ylen-xlen);ad++){
+            xarr="0"+xarr;
+        }
+    }
+    for(ad=0;ad<xarr.length;ad++){
+        if(xarr[ad]!==yarr[ad]){count+=1;}
+    }
+    return count;
+    
+    
+    
+};
