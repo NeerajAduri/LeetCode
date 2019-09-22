@@ -1,0 +1,29 @@
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    
+    int difference = 10000, num1, num2, lChange = 2;
+    
+    public int getMinimumDifference(TreeNode root) {
+        
+        if(root==null){return 0;}
+
+        getMinimumDifference(root.right);
+        
+        if(lChange==2){num1 = root.val; lChange = 1; }
+        else {num2=root.val; lChange = 2;}
+        int a = Math.abs(num1-num2);
+        if(difference > a)  {difference = a;}
+        
+        getMinimumDifference(root.left);
+        return difference;
+    }
+    
+}
