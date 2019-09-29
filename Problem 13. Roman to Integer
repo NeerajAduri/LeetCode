@@ -1,0 +1,43 @@
+class Solution {
+    public int romanToInt(String s) {
+        int total = 0;
+        
+        for(int i=0;i<s.length();i++){
+            char a =s.charAt(i);
+            if(i!=s.length()-1){
+                
+                char b = s.charAt(i+1);
+                
+                if(a=='I' && b =='V'){total+=4;i++;}
+                else if(a=='I' && b =='X'){total+=9;i++;}
+                else if(a=='X' && b =='L'){total+=40;i++;}
+                else if(a=='X' && b =='C'){total+=90;i++;}
+                else if(a=='C' && b =='D'){total+=400;i++;}
+                else if(a=='C' && b =='M'){total+=900;i++;}
+            
+                else{
+                    if(a=='I'){total+=1;}
+                    if(a=='V'){total+=5;}
+                    if(a=='X'){total+=10;}
+                    if(a=='L'){total+=50;}
+                    if(a=='C'){total+=100;}
+                    if(a=='D'){total+=500;}
+                    if(a=='M'){total+=1000;}
+                }
+
+                    
+        }
+            else{
+                        if(a=='I'){total+=1;}
+                        if(a=='V'){total+=5;}
+                        if(a=='X'){total+=10;}
+                        if(a=='L'){total+=50;}
+                        if(a=='C'){total+=100;}
+                        if(a=='D'){total+=500;}
+                        if(a=='M'){total+=1000;}
+                }
+
+        }
+        return total;
+    }
+}
