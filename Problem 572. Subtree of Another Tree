@@ -1,0 +1,31 @@
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+   boolean b = true; 
+   boolean res= false;
+    public boolean isSubtree(TreeNode s, TreeNode t) {
+        if(res==true){return res;}
+        if(s==null){return false;}
+        if(s.val == t.val){b = true; trav(s,t); if(b==true){res = true;return res;}}
+        isSubtree(s.left,t);
+        isSubtree(s.right,t);
+        return res;        
+    }
+    
+    public void trav (TreeNode s, TreeNode t){
+        if(b==false){return ;}
+        if(s==null && t==null) {return ;}
+        if((s==null && t!=null) || (s!=null && t==null)) {b = false; return;}
+        if(s.val != t.val) {b = false; return;}
+        trav(s.left,t.left);
+        trav(s.right,t.right);
+    }
+    
+}
