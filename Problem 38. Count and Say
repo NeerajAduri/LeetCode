@@ -1,0 +1,32 @@
+class Solution {
+    public String countAndSay(int n) {
+        if(n==1){return "1";}
+       
+        StringBuffer sb1 = new StringBuffer("1");
+        
+        StringBuffer sb2 = new StringBuffer();
+
+        for(int i=0;i<n-1;i++){
+            sb2=new StringBuffer();
+            char prev = 'K',curr='O';
+            int counter=0;
+            for(int j=0;j<sb1.length();j++){
+               if(counter==0){prev=sb1.charAt(0);curr=sb1.charAt(0);counter=1;continue;}
+                if(sb1.charAt(j)==prev){
+                    counter++;
+                }        
+                else{
+                    
+sb2=sb2.append(new StringBuffer(Integer.toString(counter)+Character.toString(prev)));
+                    counter=1;
+                    prev=sb1.charAt(j);
+                }
+                
+                 }
+sb2=sb2.append(new StringBuffer(Integer.toString(counter)+Character.toString(prev)));
+            sb1=sb2;      
+        }
+        return sb2.toString();
+        
+    }
+}
