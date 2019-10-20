@@ -1,0 +1,36 @@
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    public int numComponents(ListNode head, int[] G) {
+        
+        int counter=0,flag=0,change=0;
+        while(head!=null){
+            if(checkJavArr(head.val,G)){
+                flag=1;
+            }
+            else{
+                change=0;flag=0;
+            }
+            if(flag==1 && change==0){
+                change=1;
+                counter++;
+            }
+            head=head.next;
+        }
+        return counter;    
+    }
+    
+    public boolean checkJavArr(int val, int[] G){
+        
+        for(int i=0;i<G.length;i++){
+            if(G[i]==val){return true;}
+        }
+        return false;
+    }
+}
