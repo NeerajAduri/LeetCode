@@ -1,0 +1,24 @@
+class Solution {
+    public int projectionArea(int[][] grid) {
+        
+        int len = grid.length,axis=grid[0].length;
+        
+        int res=0,zcount=0,arrmax=0;
+        int[] maxes = new int[axis];
+        
+        for(int i=0;i<len;i++){
+            int rowmax=0;
+            for(int j=0;j<axis;j++){
+                if(grid[i][j]!=0){zcount++;}
+                if(grid[i][j]>rowmax){rowmax = grid[i][j];}
+                if(grid[i][j]>maxes[j]){maxes[j]=grid[i][j];}
+            }
+            res+=rowmax;
+        }
+        res+=zcount;
+        for(int i=0;i<axis;i++){
+            res+=maxes[i];
+        }
+        return res;
+    }
+}
