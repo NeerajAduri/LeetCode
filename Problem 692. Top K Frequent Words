@@ -1,0 +1,64 @@
+class Solution {
+    public List<String> topKFrequent(String[] words, int k) {
+        
+        Map<String, Integer> counter = new HashMap<String, Integer> ();
+        Map<Integer, List<String>> list = new HashMap<>();
+        for(int i=0;i<words.length;i++){
+            if(counter.containsKey(words[i])){
+                int numtimes = counter.get(words[i]);
+                List<String> number1 = list.get(numtimes);
+                number1.remove(words[i]);
+                list.put(numtimes,number1);
+                numtimes++;       
+                counter.put(words[i],numtimes);
+                if(list.containsKey(numtimes)){
+                    List<String> number3=list.get(numtimes);
+                    number3.add(words[i]);
+                    list.put(numtimes,number3);
+                }
+                else{
+                    List<String> number2 = new ArrayList<String>();
+                    number2.add(words[i]);
+                    list.put(numtimes,number2);
+                }
+            }
+            else{
+                counter.put(words[i],1);
+                if(list.containsKey(1)){
+                    List<String>  number4=list.get(1);
+                    number4.add(words[i]);
+                    list.put(1,number4);
+                }
+                else{
+                    List<String> number5 = new ArrayList<String>();
+                    number5.add(words[i]);
+                    list.put(1,number5);
+                }
+            }
+        }
+        List<String> result = new ArrayList<String>();
+        List<Integer> l = new ArrayList<Integer>(list.keySet());
+        Collections.sort(l,Collections.reverseOrder());
+        
+        for(Integer times:l){
+            if(k<=0){break;}
+            if(k>list.get(times).size()){
+                List<String> almost = list.get(times);
+                Collections.sort(almost);
+                result.addAll(almost);
+                k-=almost.size();
+            }
+            else{
+                List<String> almost = list.get(times);
+                Collections.sort(almost);
+                int i=0;
+                while(k>0){ 
+                    result.add(almost.get(i));
+                    k--;
+                    i++;
+                }
+            }
+        }
+        return result;
+    }
+}
