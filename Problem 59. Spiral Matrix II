@@ -1,0 +1,34 @@
+class Solution {
+public int[][] generateMatrix(int n) {
+    int[][] result = new int[n][n];
+    
+    int x1 = 0, x2 = n - 1;
+    int y1 = 0, y2 = n - 1;
+    int val = 1;
+    
+    while(x1 <= x2 && y1 <= y2) {
+        
+        for(int y = y1; y <= y2; y++) {
+            result[x1][y] = val++;
+        }
+        x1++;
+        
+        for(int x = x1; x <= x2; x++) {
+            result[x][y2] = val++;
+        }
+        y2--;
+        
+        for(int y = y2; y >= y1; y--) {
+            result[x2][y] = val++;
+        }
+        x2--;
+            
+        for(int x = x2; x >= x1; x--) {
+            result[x][y1] = val++;
+        }
+        y1++;
+    }
+    
+    return result;
+}
+}
