@@ -1,0 +1,18 @@
+class Solution {
+    public boolean searchMatrix(int[][] matrix, int target) {
+        if(matrix.length==0){return false;}
+        int width=matrix[0].length,height=matrix.length,val=height*width-1,low=0,high=val,prev=-1;
+        boolean res=true;
+        while(prev!=val){
+           int rval=val/width,cval=val%width;
+            if(matrix[rval][cval]==target){return true;}
+            else if(matrix[rval][cval]>target){
+                high=val;prev=val;val=(low+high)/2;
+            }
+            else{
+                low=val;prev=val;val=(low+high)/2;
+            }
+        }
+        return false;
+    }
+}
