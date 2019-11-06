@@ -1,0 +1,47 @@
+class Solution {
+    public int matrixScore(int[][] A) {
+        
+        for(int i=0;i<A.length;i++){
+            if(A[i][0]!=1){
+                A = rowrev(A,i);
+            }        
+        }
+        int count = 0;
+        for(int i=0;i<A[0].length;i++){
+            for(int j=0;j<A.length;j++){
+                if(A[j][i] == 0) {count++;}
+            }        
+            if(count*2>A.length){A=colrev(A,i);}
+            count=0;
+        }
+        
+        
+        return print(A);
+        
+    }
+    
+    public int print(int[][]A){
+        int result=0;
+        for(int i=0;i<A.length;i++){
+            for(int j=0;j<A[0].length;j++){
+                if(A[i][j] == 1){
+                    result += (int) Math.pow(2,A[0].length-j-1);
+                }
+            }
+        }
+        return result;
+    }
+    public int[][] rowrev(int[][] A, int index){
+        for(int i=0;i<A[index].length;i++){
+            A[index][i] = (1-A[index][i]);
+        }
+        return A;
+    }    
+    public int[][] colrev(int[][] A, int index){
+        for(int i=0;i<A.length;i++){
+            A[i][index] = (1-A[i][index]);
+        }
+        return A;
+    }
+    
+}
