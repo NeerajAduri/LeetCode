@@ -1,0 +1,26 @@
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    int deep=-1,val=0;
+    public int findBottomLeftValue(TreeNode root) {
+        find(root,0);
+        return val;
+    }
+    
+    public void find(TreeNode root,int level){
+        if(root==null){return;}
+        int nlevel = level+1;
+        find(root.left,nlevel);
+        if(level>deep){deep=level;val=root.val;}
+        find(root.right,nlevel);
+        return;
+    }
+    
+}
