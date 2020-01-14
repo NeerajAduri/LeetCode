@@ -1,0 +1,41 @@
+class Solution {
+    
+    Map<Integer,Integer> colors = new HashMap<>();
+
+    boolean result=true;
+    public boolean isBipartite(int[][] graph) {
+        
+        int[] seen = new int[graph.length];
+        
+        for(int i=0;i<graph.length;i++){
+            if(result==false){return false;}
+            if(seen[i]==0){
+                seen[i]=1;
+                colors.put(i,-1);  // -1 is blue and 1 is red
+                seen = dfs(graph,i,seen);
+            }   
+        }
+        
+        return true;
+    }
+    
+    public int[] dfs(int[][] graph,int node, int[] seen){
+        
+        for(int i=0;i<graph[node].length;i++){
+            if(seen[graph[node][i]]==0){
+            seen[graph[node][i]]=1;
+            int col = -1*colors.get(node);
+            colors.put(graph[node][i],col);
+            seen = dfs(graph,graph[node][i],seen);
+            }
+            else{
+                if(colors.get(node) == colors.get(graph[node][i])){
+                    result = false;
+                }
+            }
+            if(result==false){break;}
+        }
+        return seen;
+    }
+    
+}
