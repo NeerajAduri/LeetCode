@@ -1,0 +1,67 @@
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    List<Integer> result = new ArrayList<>();
+    List<Integer> result1 = new ArrayList<>();
+    List<Integer> result2 = new ArrayList<>();
+    int list=1;
+    public List<Integer> getAllElements(TreeNode root1, TreeNode root2) {
+        if(root1==null && root2==null){return result; }
+        trav(root1);
+            list=2;
+            trav(root2);
+
+        if(root1==null){return result2;}
+        if(root2==null){return result1;}
+        int ind1=0,ind2=0;
+        for(int i=0;i<result1.size()+result2.size();i++){
+            if(result1.get(ind1)<=result2.get(ind2)){
+                result.add(result1.get(ind1));
+                ind1++;
+                if(ind1==result1.size()){break;}
+            }else{
+                result.add(result2.get(ind2));
+                ind2++;
+                if(ind2==result2.size()){break;}
+            }
+            
+        }
+        if(ind1<result1.size()){
+                for(int i=ind1;i<result1.size();i++){
+                    result.add(result1.get(i));
+                }    
+            }
+            
+            if(ind2<result2.size()){
+                for( int i=ind2;i<result2.size();i++){
+                    result.add(result2.get(i));
+                }    
+            }
+        //System.out.println(result1+" "+result2);
+        return result;
+    }
+    
+    public void trav(TreeNode root){
+        
+        if(root==null){return;}
+        trav(root.left);
+        if(list==1){
+            result1.add(root.val);
+        }
+        else{
+            result2.add(root.val);
+        }
+        
+        trav(root.right);
+        
+        
+    }
+    
+}
