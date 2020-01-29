@@ -1,0 +1,30 @@
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    int xf=0,xp=Integer.MIN_VALUE,xd=0,yf=0,yp=Integer.MIN_VALUE,yd=0;
+    public boolean isCousins(TreeNode root, int x, int y) {
+        trav(root,0,x,y,-99);
+        if(xd==yd && xp!=yp){return true;}
+        return false;
+    }
+    public void trav(TreeNode root, int depth, int x, int y,int parent){
+        if(root==null){return;}
+        if(xf==1 && yf==1){return;}
+        
+        if(root.val==x){xf=1;xd=depth;xp=parent;}
+        if(root.val==y){yf=1;yd=depth;yp=parent;}
+        
+        depth++;
+        trav(root.left,depth,x,y,root.val);
+        trav(root.right,depth,x,y,root.val);
+        
+        return;
+    }
+}
