@@ -1,0 +1,11 @@
+class Solution {
+    public int findNumbers(int[] nums) {
+        if(nums.length==0){return 0;}
+        int result = 0,k=0;
+        for(int i=0;i<nums.length;i++){
+            k = (int)Math.log10(nums[i]);
+            if(k%2!=0){result++;}
+        }
+        return result;
+    }
+}
